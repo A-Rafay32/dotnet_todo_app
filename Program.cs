@@ -8,8 +8,8 @@ using TodoApp.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("TodoDb"));
-builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+builder.Services.AddControllers(); 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -69,7 +69,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+
 app.Run();

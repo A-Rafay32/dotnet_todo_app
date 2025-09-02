@@ -9,6 +9,18 @@ using TodoApp.Models;
 namespace TodoApp.Controllers;
 
 [ApiController]
+[Route("/")]
+public class AppController : ControllerBase
+{
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok("🚀 Todo API is running...");
+    }
+}
+
+
+[ApiController]
 [Route("api/[controller]")]
 [Authorize]
 public class TodoController : ControllerBase
